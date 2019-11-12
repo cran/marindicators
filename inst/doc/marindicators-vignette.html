@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Danielle Dempsey, Adam Cook, Catalina Gomez, Alida Bundy" />
+
+<meta name="date" content="2019-11-07" />
+
+<title>Introduction to marindicators</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to <code>marindicators</code></h1>
+<h4 class="author">Danielle Dempsey, Adam Cook, Catalina Gomez, Alida Bundy</h4>
+<h4 class="date">2019-11-07</h4>
+
+
+
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>A comprehensive evaluation and selection of robust ecological indicators is one of the key steps in the process of implementing an Ecosystem Approach to fisheries management and to track progress towards meeting ecosystem goals. The “Guidance framework for the selection and evaluation of ecological indicators” (Bundy, Gomez, and Cook, 2017) was developed to select and evaluate potential indicators for ecosystem monitoring and assessment at different spatial scales using established selection criteria (Fig. 1).</p>
+<div class="figure">
+<img src="data:image/png;base64,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chbHdWXAUAZivvHGGy2R4TyGDh1qg4hyL3722We2HYcfAzUfeeSRoVfqfF5//XWbh/gv4teG8HPPPWfTxx13nK2/1157hSeffNLiUGX3Z03+KwY8PfaYY+z8+/XrF7766qv0nGDPh5e2DEjdFyzz/PPPW9j17LPPWvyJJ54YvkzllDnWbPBje1wvxL569uxZ4b7kJfamm26ya7HPPvvYgNeIZ6L/Uf3tfO9IPVtR/ePv/7AXFOYdkzoPXlqiynYtOE+u85tvvpmOKTs+4hDHwDQv1DwrB6fuEU9fOC72x3WLPq9o8ODBNg8n3df1KcEvRxcD/M4880yb//ykSRZmGnfo0CEzfc0111SY505S8+bNbd7iiy+eWe6nn36yeRStepx7m222sXnI142a40e33HyzhdnulltumZmPeNCYPvussy2MovN9OroeCVJ0nhvtv99+C8W/+OKLNo8HMz4PL7XUkhXCjOCPPJy07yRFrxteZpll7Ndz5meffXaF+XjNNde0eWixxRazuGWXXTYz3xM9vxemTJliYZ8f/a+vTAGtOtpggw1s+aWWWiqz7rnnnmvzPOzmP46GgRaJbjRuvfXWC4888ohN+0uRwy9uoIH8v/BrQ/Eo4W233dYS1ug6GCXdn57oe7g6/xWJuS8TvdYUoaMVVlghE7fIIotkpt944w2bf3P6fo47G/yi24v6vffes/lbbLFFhfiddtrJ0h4PN/lLE/vdol07W55r6PO22mqrzLRDysNJ18LXJe1w+fEh/g+ml1hiicy6aOutt7bpJuk47P9d06ZNLdymTZvMel27drV5DSHBL0cXA/x8/owZM+zNlOm99947PbfsLdNzOrwlM/+EE06wcFyjRo2y+ZdccomFeQMk3L1bNwszjV0btm6dCXticNRRR1kYRZf3h3BaKuFE5ByOP/54y1Ug5gEKRG6H8Fmph/Orr7+26a1TD7iLBObSSy5Nh8rW3WOPPWyat1rC23fubGFEGCPWZdqL0sgxET4olXtB/jLB9SYHw3Rl+47q4YcftuW7dOmSjinf97/+9a9M4r7SSiul5wa7tsRx/VDn1HHfddddNu2JHzlAVJP/uiptv/32FYoT2dZ2KeigpPukdeS/Rn4dN9544/DBBx+Et996O4wbN87i/F51+J1//vkWJqdFeOmll7awb+Pjjz+28J9//mlhv35z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" alt="Figure 1. Indicator Selection Guidance Framework" />
+<p class="caption">Figure 1. Indicator Selection Guidance Framework</p>
+</div>
+<p>The framework was successfully tested for the Scotian Shelf Bioregion, Canada. In Step 1, four ecosystem attributes and one pressure were defined: Biodiversity, Ecosystem Structure and Functioning, Ecosystem Stability and Resistance to Perturbations, Resource Potential, and Fishing Pressure. In Step 2, 186 indicators were selected to represent these attributes and pressure. The qualitative screening in Step 3 reduced this set to 68 indicators, which were calculated in Step 4 (Table 1). The quantitative screening in Step 5 resulted in a final suite of 30 non-redundant ecological and fishing pressure indicators derived from fishery independent and dependent data (Table 1; Step 6). For more information, including attribute and sub-attribute definitions and the methods used to select the final suite of indicators, please refer to the Guidance Framework document (Bundy, Gomez, and Cook, 2017).</p>
+<p>The <code>marindicators</code> package provides functions to calculate the suite of marine ecosystem indicators calculated in Step 4 of the Guidance Framework (Table 1; Bundy, Gomez, and Cook, 2017). Some functions may be used to calculate additional indicators, for example by specifying different species groups or using alternative values for arguments with default values.</p>
+<p>Table 1: <code>marindicators</code> function to calculate each of the 68 indicators calculated for the Scotian Shelf Bioregion in Step 4 of the Guidance Framework. Ecosystem attributes/pressure are shown in <strong>BOLD CAPS</strong>. Indicators included in the final suite for the Scotian Shelf Bioregion are highlighted in <strong>bold</strong>.</p>
+<table style="width:97%;">
+<colgroup>
+<col width="34%"></col>
+<col width="37%"></col>
+<col width="25%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>SUB-ATTRIBUTE</strong></th>
+<th align="left"><strong>INDICATOR</strong></th>
+<th align="center"><strong>FUNCTION</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>BIODIVERSITY</strong></td>
+<td align="left"></td>
+<td align="center"><code>allBiodiversity()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Species Richness</td>
+<td align="left"><strong>Margalef’s Species Richness</strong></td>
+<td align="center"><code>margalef()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Species Richness</td>
+<td align="left">Margalef’s Species Richness (groundfish)</td>
+<td align="center"><code>margalef()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Species Richness</td>
+<td align="left">Species Richness</td>
+<td align="center"><code>speciesRichness()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Species Diversity</td>
+<td align="left">Shannon’s Diversity Index</td>
+<td align="center"><code>shannon()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Species Diversity</td>
+<td align="left">Hill’s Diversity Index</td>
+<td align="center"><code>hillN1()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Species Diversity</td>
+<td align="left">Kempton’s Q</td>
+<td align="center"><code>kemptonQ()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Species Evenness</td>
+<td align="left">Pielou’s Species Evenness</td>
+<td align="center"><code>pielouEvenness()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Species Evenness</td>
+<td align="left">Hill’s Dominance</td>
+<td align="center"><code>hillN2()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Species Evenness</td>
+<td align="left"><strong>Heip’s Evenness Index</strong></td>
+<td align="center"><code>heips()</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>STRUCTURE &amp; FUNCTIONING</strong></td>
+<td align="left"></td>
+<td align="center"><code>allStructure()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Structure: Top of Food Web</td>
+<td align="left"><strong>Large Fish Indicator</strong></td>
+<td align="center"><code>largeFishIndicator()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Structure: Top of Food Web</td>
+<td align="left">Large Species Indicator</td>
+<td align="center"><code>largeSpeciesIndicator()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Structure: Top of Food Web</td>
+<td align="left">Proportion of Predatory Fish</td>
+<td align="center"><code>biomassRatio()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Structure: Trophic Guilds</td>
+<td align="left">Biomass of Large Benthivores</td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Structure: Trophic Guilds</td>
+<td align="left">Biomass of Medium Benthivores</td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Structure: Trophic Guilds</td>
+<td align="left">Biomass of Planktivores</td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Structure: Trophic Guilds</td>
+<td align="left"><strong>Biomass of Piscivores</strong></td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Structure: Trophic Guilds</td>
+<td align="left"><strong>Biomass of Zoopiscivores</strong></td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Size Structure: Fish Community</td>
+<td align="left"><strong>Mean Length (weighted by abundance)</strong></td>
+<td align="center"><code>meanLengthCommunity()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Size Structure: Fish Community</td>
+<td align="left">Mean Length (weighted by biomass)</td>
+<td align="center"><code>meanLengthCommunity()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Trophic Structure</td>
+<td align="left"><strong>Mean Trophic Level of Community</strong></td>
+<td align="center"><code>meanTLCommunity()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Structural Change</td>
+<td align="left">Pelagic to Demersal biomass ratio</td>
+<td align="center"><code>biomassRatio()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Structural Change</td>
+<td align="left">Invertebrate to Demersal biomass ratio</td>
+<td align="center"><code>biomassRatio()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Ecosystem Functioning</td>
+<td align="left"><strong>Community Condition</strong></td>
+<td align="center"><code>communityCondition()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Ecosystem Functioning</td>
+<td align="left"><strong>Large Benthivore Condition</strong></td>
+<td align="center"><code>communityCondition()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Ecosystem Functioning</td>
+<td align="left"><strong>Medium Benthivore Condition</strong></td>
+<td align="center"><code>communityCondition()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Ecosystem Functioning</td>
+<td align="left">Planktivore Condition</td>
+<td align="center"><code>communityCondition()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Ecosystem Functioning</td>
+<td align="left"><strong>Piscivore Condition</strong></td>
+<td align="center"><code>communityCondition()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Ecosystem Functioning</td>
+<td align="left"><strong>Zoopiscivore Condition</strong></td>
+<td align="center"><code>communityCondition()</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>STABILITY &amp; RESISTANCE</strong></td>
+<td align="left"></td>
+<td align="center"><code>allStability()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Ecosystem Resistance</td>
+<td align="left"><strong>Mean Lifespan</strong></td>
+<td align="center"><code>meanMaxAge()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Ecosystem Resistance</td>
+<td align="left">Mean Max Length (weighted by abundance)</td>
+<td align="center"><code>meanMaxLength()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Ecosystem Resistance</td>
+<td align="left">Mean Max Length (weighted by biomass)</td>
+<td align="center"><code>meanMaxLength()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Ecosystem Resistance</td>
+<td align="left"><strong>Intrinsic Vulnerability Index of Landings</strong></td>
+<td align="center"><code>IVILandings()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Stability of Trophic Community</td>
+<td align="left"><strong>Biomass per Trophic Level 2</strong></td>
+<td align="center"><code>biomassPerTL()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Stability of Trophic Community</td>
+<td align="left">Biomass per Trophic Level 3</td>
+<td align="center"><code>biomassPerTL()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Stability of Trophic Community</td>
+<td align="left">Biomass per Trophic Level 4</td>
+<td align="center"><code>biomassPerTL()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Stability of Community Biomass</td>
+<td align="left"><strong>Coefficient of Variation of Biomass</strong><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></td>
+<td align="center"><code>CVBiomass()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>RESOURCE POTENTIAL</strong></td>
+<td align="left"></td>
+<td align="center"><code>allPotential()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Potential of Community</td>
+<td align="left"><strong>Biomass</strong></td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Potential of Community</td>
+<td align="left">Biomass of Finfish</td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Potential of Community</td>
+<td align="left"><strong>Biomass of Invertebrates</strong></td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Potential of Fished Groups</td>
+<td align="left">Biomass of Clupeids</td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Potential of Fished Groups</td>
+<td align="left">Biomass of Forage Fish</td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Potential of Fished Groups</td>
+<td align="left"><strong>Biomass of Gadoids</strong></td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Potential of Fished Groups</td>
+<td align="left">Biomass of Groundfish</td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Potential of Fished Groups</td>
+<td align="left"><strong>Biomass of Flatfish</strong></td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Potential of Indicator Species</td>
+<td align="left"><strong>Biomass of Skates</strong></td>
+<td align="center"><code>resourcePotential()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Fishing Strategies &amp; System Productivity</td>
+<td align="left">Fishing in Balance</td>
+<td align="center"><code>fishingInBalance()</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>FISHING PRESSURE</strong></td>
+<td align="left"></td>
+<td align="center"><code>allPressure()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Fishing Pressure on Community</td>
+<td align="left"><strong>Fishing Pressure on Community</strong></td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Fishing Pressure on Community</td>
+<td align="left">Fishing Pressure on Finfish</td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Fishing Pressure on Community</td>
+<td align="left">Fishing Pressure on Invertebrates</td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Fishing Pressure on Fished Groups</td>
+<td align="left"><strong>Fishing Pressure on Clupeids</strong></td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Fishing Pressure on Fished Groups</td>
+<td align="left">Fishing Pressure on Forage Fish</td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Fishing Pressure on Fished Groups</td>
+<td align="left">Fishing Pressure on Groundfish</td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Fishing Pressure on Fished Groups</td>
+<td align="left">Fishing Pressure on Gadoids</td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Fishing Pressure on Fished Groups</td>
+<td align="left">Fishing Pressure on Skates</td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Fishing Pressure on Fished Groups</td>
+<td align="left">Fishing Pressure on Flatfish</td>
+<td align="center"><code>fishingPressure()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Distribution of Fishing Pressure</td>
+<td align="left"><strong>Marine Trophic Index</strong></td>
+<td align="center"><code>meanTLLandings()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Distribution of Fishing Pressure</td>
+<td align="left"><strong>Mean Trophic Level of Landings</strong></td>
+<td align="center"><code>meanTLLandings()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Distribution of Fishing Pressure</td>
+<td align="left"><strong>Diversity of Target Species</strong></td>
+<td align="center"><code>speciesRichness()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Total Landings</td>
+<td align="left"><strong>Landings</strong></td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Total Landings</td>
+<td align="left">Landings of Clupeids</td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Total Landings</td>
+<td align="left">Landings of Forage Fish</td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Total Landings</td>
+<td align="left">Landings of Groundfish</td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Total Landings</td>
+<td align="left">Landings of Gadoids</td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Total Landings</td>
+<td align="left">Landings of Finfish</td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Total Landings</td>
+<td align="left">Landings of Invertebrates</td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Total Landings</td>
+<td align="left"><strong>Landings of Skates</strong></td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Total Landings</td>
+<td align="left"><strong>Landings of Flatfish</strong></td>
+<td align="center"><code>landings()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Total Landings</td>
+<td align="left"><strong>Landings of Large Pelagics</strong></td>
+<td align="center"><code>landings()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="application" class="section level1">
+<h1>Application</h1>
+<p>There are three main steps for applying <code>marindicators</code>: Step 1: Decide which indicators to calculate; Step 2: Compile data; Step 3: Calculate indicators. Steps 1 and 2 may be interchangeable and the availability of data may inform the choice of indicators. These steps are described in detail below.</p>
+<div id="step-1-decide-which-indicators-to-calculate" class="section level2">
+<h2>Step 1: Decide which indicators to calculate</h2>
+<p>The decision of which indicators to calculate will ideally be informed by an indicator selection process like the Guidance Framework (Bundy, Gomez, and Cook, 2017), and may also be informed by specific research questions, and/or the availability of data. The selected indicators will dictate the data required and the choice of function(s) (Steps 2 and 3).</p>
+<p>Table 1 provides a guide for the indicators calculated by the package. Note that species groups are user-defined, and so the package is not restricted to calculating indicators for the groups in Table 1 (see <strong>Species Groups</strong> below).</p>
+</div>
+<div id="step-2-compile-data" class="section level2">
+<h2>Step 2: Compile Data</h2>
+<p>The data required will depend on which indicators were selected in Step 1. In general, indicators related to ecosystem attributes require annual fishery independent survey data, while indicators related to fishing pressure require annual commercial landings data. Additional species information is required to calculate some indicators (Table 2). See the <code>help</code> page for a specific function for its data requirements.</p>
+<p>This section describes the six dataframes required to calculate all of the indicators listed in Table 1.</p>
+<div id="fishery-independent-data" class="section level3">
+<h3>Fishery independent data</h3>
+<p><strong>X</strong> is a dataframe of fishery independent data derived from research vessel survey data or model output, with columns <code>YEAR</code>, <code>ID</code>, <code>SPECIES</code>, and <code>ABUNDANCE</code> and/or <code>BIOMASS</code> (depending on which indicator is being calculated). <code>YEAR</code> indicates the year the observation was recorded, <code>ID</code> is an area code indicating where the observation was recorded, <code>SPECIES</code> is a numeric code indicating the species sampled, and <code>ABUNDANCE</code>/<code>BIOMASS</code> is the corresponding abundance/biomass (stratified and corrected for catchability as required).</p>
+<pre><code>#&gt;     YEAR    ID SPECIES ABUNDANCE  BIOMASS
+#&gt; 1   2014 AREA1      10  2.91e+08 6.34e+07
+#&gt; 2   2014 AREA1      11  2.56e+08 7.09e+07
+#&gt; 3   2014 AREA1      12  2.58e+07 9.68e+06
+#&gt; 4   2014 AREA1      13  2.15e+07 1.43e+06
+#&gt; 154 2014 AREA2      10  6.73e+07 4.20e+06
+#&gt; 155 2014 AREA2      11  2.30e+08 5.66e+07
+#&gt; 156 2014 AREA2      12  3.24e+07 1.94e+07
+#&gt; 157 2014 AREA2      13  3.28e+07 2.32e+06
+#&gt; 315 2015 AREA1      10  2.43e+08 6.06e+07
+#&gt; 316 2015 AREA1      11  4.45e+08 5.23e+07
+#&gt; 317 2015 AREA1      12  2.07e+07 8.01e+06
+#&gt; 318 2015 AREA1      13  3.40e+07 3.56e+06
+#&gt; 505 2015 AREA2      10  6.23e+07 4.75e+06
+#&gt; 506 2015 AREA2      11  2.40e+08 6.95e+07
+#&gt; 507 2015 AREA2      12  1.30e+07 1.22e+07
+#&gt; 508 2015 AREA2      13  1.83e+07 2.38e+06</code></pre>
+<p>Indicators calculated using <code>X</code> (among other arguments): Heip’s Evenness Index, Hill’s N1, Hill’s N2, Kempton’s Q, Margalef’s Species Richness, Pielou’s Species Evenness, Shannon’s Diversity Index, Biomass ratio(s), Abundance/Biomass of Species Groups, Large Species Indicator, Mean Trophic Level of the Community, CV of Biomass, Mean Maximum Lifespan, Mean Maximum Length, and Fishing Pressure.</p>
+<p><strong>X_length</strong> is a dataframe of fishery independent data derived from research vessel survey data or model output, with columns <code>YEAR</code>, <code>ID</code>, <code>SPECIES</code>, <code>LENGTH</code>, and <code>ABUNDANCE</code> and/or <code>BIOMASS</code> (depending on which indicator is being calculated). As with <code>X</code>, <code>YEAR</code> indicates the year the observation was recorded, <code>ID</code> is an area code indicating where the observation was recorded, and <code>SPECIES</code> is a numeric code indicating the species sampled. <code>LENGTH</code> is the length class (cm) and <code>ABUNDANCE</code>/<code>BIOMASS</code> is the corresponding abundance/biomass at length (stratified and corrected for catchability as required). Species for which there are no length data should be assigned <code>LENGTH = -99</code>. These observations are removed by the function(s).</p>
+<pre><code>#&gt;      YEAR    ID SPECIES LENGTH ABUNDANCE  BIOMASS
+#&gt; 200  2014 AREA1      23      4  2.91e+06 2.02e+03
+#&gt; 201  2014 AREA1     123      4  2.16e+05 2.10e+02
+#&gt; 202  2014 AREA1     150      4  9.31e+06 8.79e+03
+#&gt; 203  2014 AREA1     502      4  3.14e+06 1.44e+04
+#&gt; 205  2014 AREA2      11      4  2.01e+05 9.51e+01
+#&gt; 206  2014 AREA2      23      4  4.69e+05 3.26e+02
+#&gt; 207  2014 AREA2     123      4  2.66e+06 2.58e+03
+#&gt; 208  2014 AREA2     150      4  3.60e+06 3.40e+03
+#&gt; 2628 2015 AREA1     502      2  3.45e+06 2.43e+03
+#&gt; 2629 2015 AREA1      40      3  6.46e+06 9.37e+02
+#&gt; 2630 2015 AREA1     502      3  7.21e+06 1.57e+04
+#&gt; 2632 2015 AREA1      10      4  1.10e+07 6.25e+03
+#&gt; 2631 2015 AREA2     340      3  4.32e+05 1.10e+02
+#&gt; 2638 2015 AREA2      23      4  7.57e+05 6.56e+02
+#&gt; 2639 2015 AREA2     150      4  4.09e+06 4.00e+03
+#&gt; 2640 2015 AREA2     300      4  7.07e+05 3.68e+02</code></pre>
+<p>Indicators calculated using <code>X_length</code> (among other arguments): Community Condition, Large Fish Indicator, Mean Length.</p>
+</div>
+<div id="commercial-landings-data" class="section level3">
+<h3>Commercial landings data</h3>
+<p><strong>land</strong> is a dataframe of commercial landings data with columns <code>YEAR</code>, <code>ID</code>, <code>SPECIES</code> and <code>CATCH</code>. <code>YEAR</code> indicates the year the landing was recorded, <code>ID</code> is an area code indicating where the landing was recorded, <code>SPECIES</code> is a numeric code indicating the species landed, and <code>CATCH</code> is the corresponding landed weight (in the same units as <code>BIOMASS</code> in <code>X</code> and <code>X_length</code>).</p>
+<p>The species codes in <code>land</code> may not be consistent with those in <code>X</code> and <code>X_length</code> (this may be the case when dealing with different data sources). In this case, ensure that the species codes are consistent with the <strong>Species Information</strong> and <strong>Species Groups</strong> tables described below. Additionally, the Fishing-in-Balance, Intrinsic Vulnerability Index of Landings, Mean Trophic Level of the Landings, and Marine Trophic Index should be calculated using their respective single functions (see <strong>Examples</strong> below).</p>
+<pre><code>#&gt;     YEAR    ID SPECIES    CATCH
+#&gt; 1   2014 AREA1      10 4.78e+03
+#&gt; 2   2014 AREA1      11 4.06e+03
+#&gt; 3   2014 AREA1      12 9.22e+03
+#&gt; 4   2014 AREA1      13 1.55e+01
+#&gt; 307 2014 AREA2      10 4.06e+03
+#&gt; 308 2014 AREA2      11 6.26e+03
+#&gt; 309 2014 AREA2      12 4.84e+03
+#&gt; 310 2014 AREA2      13 2.83e+03
+#&gt; 52  2015 AREA1      10 8.32e+02
+#&gt; 53  2015 AREA1      11 4.37e+03
+#&gt; 54  2015 AREA1      12 2.92e+03
+#&gt; 55  2015 AREA1      13 9.47e+03
+#&gt; 358 2015 AREA2      10 4.82e+03
+#&gt; 359 2015 AREA2      11 7.42e+03
+#&gt; 360 2015 AREA2      12 3.76e+03
+#&gt; 361 2015 AREA2      13 5.01e+03</code></pre>
+<p>Indicators calculated using <code>land</code> (among other arguments): Intrinsic Vulnerability Index, Fishing-in-Balance, Diversity of the Target Species, Fishing Pressure, Landings, Marine Trophic Index, and Mean Trophic Index of Landings.</p>
+</div>
+<div id="species-information" class="section level3">
+<h3>Species Information</h3>
+<p>Additional information on key species (i.e., all species for which the information is available) is required to calculate several indicators (Table 2).</p>
+<p>Table 2: Additional species information required to calculate given indicators. TABLE HEADER is the required name of the column containing the information in the table passed to the function.</p>
+<table>
+<colgroup>
+<col width="17%"></col>
+<col width="18%"></col>
+<col width="41%"></col>
+<col width="22%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>SPECIES INFO</strong></th>
+<th align="center"><strong>TABLE HEADER</strong></th>
+<th align="left"><strong>DESCRIPTION</strong></th>
+<th align="left"><strong>INDICATOR(S)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Trophic Level</td>
+<td align="center"><code>TL</code></td>
+<td align="left">Trophic level of species caught in fishery independent surveys</td>
+<td align="left">Kempton’s Q<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, Mean Trophic Level of Community, Biomass per Trophic Level</td>
+</tr>
+<tr class="even">
+<td align="left">Maximum Length</td>
+<td align="center"><code>MAXLENGTH</code></td>
+<td align="left">Maximum recorded length of species caught in fishery independent surveys</td>
+<td align="left">Large Species Indicator, Mean Maximum Length</td>
+</tr>
+<tr class="odd">
+<td align="left">Maximum Age</td>
+<td align="center"><code>MAXAGE</code></td>
+<td align="left">Maximum recorded age of of species caught in fishery independent surveys</td>
+<td align="left">Maximum Lifespan</td>
+</tr>
+<tr class="even">
+<td align="left">Intrinsic Vulnerability Index</td>
+<td align="center"><code>IVI</code></td>
+<td align="left">Vulnerability of commercial species, determined by considering several traits (e.g. max length, age at first maturity, longevity, von Bertalanffy growth parameter, natural mortality, fecundity, spatial behaviour, and geographic range)</td>
+<td align="left">IVI of landings</td>
+</tr>
+<tr class="odd">
+<td align="left">Trophic Level of Landed Species</td>
+<td align="center"><code>TL_LAND</code></td>
+<td align="left">Trophic level of commercial species</td>
+<td align="left">Fishing-in-Balance, Marine Trophic Index, Mean Trophic Level of Landings</td>
+</tr>
+</tbody>
+</table>
+<p>The species information is passed to the function through a table with at least two columns: <code>SPECIES</code> (the species codes) and the corresponding column of information, which should be named after one of the table headers in Table 2. For example:</p>
+<pre><code>#&gt;   SPECIES    TL
+#&gt; 1      10 4.170
+#&gt; 2      11 3.405
+#&gt; 3      12 4.465
+#&gt; 4      13 3.665
+#&gt; 5      14 4.227
+#&gt; 6      15 4.465
+#&gt; 7      16 4.080
+#&gt; 8      17 3.580</code></pre>
+<p>If the species codes used in <code>X</code> and <code>land</code> are the same, it may be convenient to store all of the additional information in a single table. If the species codes in <code>X</code> and <code>land</code> are not the same, then the extra information should be stored in at least two tables (e.g., <code>TL</code>, <code>MAXLENGTH</code>, and <code>MAXAGE</code> in one table, and <code>IVI</code> and <code>TL_LAND</code> in the other). If information is not available for a given species, assign a value of <code>NA</code>. This whole table may be passed to a function; superfluous columns will be ignored.</p>
+<pre><code>#&gt;    SPECIES    TL MAXLENGTH MAXAGE IVI TL_LAND
+#&gt; 1       10 4.170        96     25  52   4.337
+#&gt; 2       11 3.405        64     20  47   3.430
+#&gt; 3       12 4.465        83     20  41   4.600
+#&gt; 4       13 3.665        47     14  41   3.550
+#&gt; 5       14 4.227        39     12  48   4.224
+#&gt; 6       15 4.465        92     20  54   4.600
+#&gt; 7       16 4.080        91     14  58   4.250
+#&gt; 8       17 3.580        27     NA  24   3.580
+#&gt; 9       19 4.465        71     NA  59      NA
+#&gt; 10      23 3.890        41     48  58   3.900</code></pre>
+</div>
+<div id="length-weight-data" class="section level3">
+<h3>Length-Weight data</h3>
+<p>The Community Condition indicator (based on Fulton’s condition index) requires annual length-weight data for all species of interest. This table should have 5 columns: <code>YEAR</code>, <code>ID</code>, and <code>SPECIES</code> correspond with those columns in <code>X_length</code>, while <code>LENGTH</code> is fish length at the corresponding <code>WEIGHT</code> (fish weight).</p>
+<pre><code>#&gt;       YEAR    ID SPECIES LENGTH WEIGHT
+#&gt; 1     2014 AREA1      23     37    698
+#&gt; 2     2014 AREA1     201     28    178
+#&gt; 3     2014 AREA1      23     38    649
+#&gt; 4     2014 AREA1    2526     80    160
+#&gt; 10321 2014 AREA2      11     19     58
+#&gt; 10322 2014 AREA2      11      8      4
+#&gt; 10323 2014 AREA2      11     53   1540
+#&gt; 10324 2014 AREA2      13     34    281
+#&gt; 17885 2015 AREA1      40     26    130
+#&gt; 17886 2015 AREA1     410     26     48
+#&gt; 17887 2015 AREA1      23     36    750
+#&gt; 17888 2015 AREA1     201     37    454
+#&gt; 28794 2015 AREA2      23     19    122
+#&gt; 28795 2015 AREA2      23     19     96
+#&gt; 28796 2015 AREA2      14     26    124
+#&gt; 28797 2015 AREA2      11     37    518</code></pre>
+</div>
+<div id="species-groups" class="section level3">
+<h3>Species Groups</h3>
+<p>Several functions give the user the option to choose the species group(s) for which to calculate the indicator. The groups are defined by the user in a table, called here <code>species.table</code>. The column names of <code>species.table</code> are the groups of interest, and the entries in each column are the codes for species that belong in that group. Both fishery independent groups (e.g., trophic guilds) and commercial groups can be included in this table, but take care to be consistent with the species codes (e.g., if there are different species codes in <code>X</code> and <code>land</code>, the fishery independent groups should include species codes from <code>X</code>, and the commercial groups should include species codes from <code>land</code>).</p>
+<pre><code>#&gt;   CLUPEIDS FINFISH FLATFISH FORAGE GADOIDS GROUNDFISH INVERTEBRATES
+#&gt; 1       60       1       30     60      10         10          2000
+#&gt; 2       61       2       31     61      11         11          2001
+#&gt; 3       62       3       40     62      12         12          2002
+#&gt; 4       63       4       41     63      13         13          2003
+#&gt; 5       NA       5       42     64      14         14          2004
+#&gt; 6       NA       6       43    160      15         15          2005
+#&gt; 7       NA       7       44    610      16         16          2006
+#&gt; 8       NA       8       45     NA      17         17          2007</code></pre>
+<p>The user does not need to include a column with all species (i.e., all species are automatically included in the calculation if argument <code>group = &quot;ALL&quot;</code>).</p>
+</div>
+</div>
+<div id="step-3-calculate-indicators" class="section level2">
+<h2>Step 3: Calculate Indicators</h2>
+<p>The functions used to calculate the indicators will depend on which indicators were selected in Step 1. There are three different levels of functions:</p>
+<ol style="list-style-type: decimal">
+<li><p>Individual functions: generally calculate a single indicator for one or more user-defined species groups. These functions return a dataframe with columns: <code>ID</code>, <code>YEAR</code>, and a column with the indicator values for each species group.</p></li>
+<li><p>“allAttribute” functions: call the individual functions to calculate and return all (or a subset) of the indicators for an attribute or pressure. The user can choose whether the function returns the raw indicator values, the standardized (z-score) values, or both. Additionally, the user can choose whether the function returns the indicator dataframe to the global environment, exports the dataframe to a csv file, or both. These functions return a dataframe with columns <code>ID</code>, <code>YEAR</code>, and indicators corresponding to the arguments supplied to the function.</p></li>
+<li><p><code>extractAll()</code> function, which calls the “allAttribute” functions to calculate and return all of the indicators. The user can choose whether the function returns the raw indicator values, the standardized (z-score) values, or both. Additionally, the user can choose whether the function returns the indicator dataframe to the global environment, exports the dataframe to a csv file, or both.</p></li>
+</ol>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<p>Here we show examples of how to use the different levels of functions to calculate indicators for two areas (<code>AREA1</code> and <code>AREA2</code>) from 2014 - 2019.</p>
+</div>
+<div id="example-1" class="section level3">
+<h3>Example 1</h3>
+<p>If there are only a handful of indicators to be calculated, it may be most efficient and convenient to use the individual functions (Table 1). For example, say in Step 1 we decide we are interested in: the Biomass and Margalef’s Species Richness for the community and groundfish, the Biomass per Trophic Levels 2, 3, and 4, and the Intrinsic Vulnerability Index, Trophic Level, and Marine Trophic Index of the landings. In this case, we would choose to apply the corresponding individual functions: <code>resourcePotential()</code>, <code>margalef()</code>, <code>biomassPerTL()</code>, <code>IVILandings()</code>, and <code>meanTLLandings()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compiled Data</span>
+<span class="kw">data</span>(X)
+<span class="kw">data</span>(land)
+<span class="kw">data</span>(species.table)
+<span class="kw">data</span>(species.info)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate indicators:</span>
+<span class="co"># Biomass of community and groundfish species</span>
+biomass &lt;-<span class="st"> </span><span class="kw">resourcePotential</span>(<span class="dt">X =</span> X, <span class="dt">groups =</span> <span class="kw">c</span>(<span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;GROUNDFISH&quot;</span>), 
+                             <span class="dt">species.table =</span> species.table, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>))
+biomass
+<span class="co">#&gt;       ID YEAR BIOMASS_ALL BIOMASS_GROUNDFISH</span>
+<span class="co">#&gt; 1  AREA1 2014  3162255851          462102408</span>
+<span class="co">#&gt; 2  AREA1 2015  2497674482          533289357</span>
+<span class="co">#&gt; 3  AREA1 2016  2515742813          415384140</span>
+<span class="co">#&gt; 4  AREA1 2017  2649301301          484332680</span>
+<span class="co">#&gt; 5  AREA1 2018  2148033716          525420919</span>
+<span class="co">#&gt; 6  AREA1 2019  3351348267          353127256</span>
+<span class="co">#&gt; 7  AREA2 2014  2759984514          609696420</span>
+<span class="co">#&gt; 8  AREA2 2015  1256212621          381644027</span>
+<span class="co">#&gt; 9  AREA2 2016  1524331978          321671679</span>
+<span class="co">#&gt; 10 AREA2 2017  1321989582          658386317</span>
+<span class="co">#&gt; 11 AREA2 2018  1836321002          929478862</span>
+<span class="co">#&gt; 12 AREA2 2019  1325037414          368579722</span>
+
+<span class="co"># Margalef's Species Richness of community and groundfish species</span>
+marg &lt;-<span class="st"> </span><span class="kw">margalef</span>(<span class="dt">X=</span> X, <span class="dt">groups =</span> <span class="kw">c</span>(<span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;GROUNDFISH&quot;</span>), <span class="dt">metric =</span> <span class="st">&quot;ABUNDANCE&quot;</span>,  
+                 <span class="dt">species.table =</span> species.table, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>))
+marg
+<span class="co">#&gt;       ID YEAR MargalefRichness_ALL MargalefRichness_GROUNDFISH</span>
+<span class="co">#&gt; 1  AREA1 2014             6.197670                    1.756198</span>
+<span class="co">#&gt; 2  AREA1 2015             7.702378                    1.747188</span>
+<span class="co">#&gt; 3  AREA1 2016             7.717426                    1.670704</span>
+<span class="co">#&gt; 4  AREA1 2017             8.265226                    1.760840</span>
+<span class="co">#&gt; 5  AREA1 2018             7.754668                    1.781742</span>
+<span class="co">#&gt; 6  AREA1 2019             7.842566                    1.928704</span>
+<span class="co">#&gt; 7  AREA2 2014             6.726931                    1.573160</span>
+<span class="co">#&gt; 8  AREA2 2015             6.420818                    1.796468</span>
+<span class="co">#&gt; 9  AREA2 2016             6.376422                    1.616272</span>
+<span class="co">#&gt; 10 AREA2 2017             6.143174                    1.752277</span>
+<span class="co">#&gt; 11 AREA2 2018             5.850146                    1.725159</span>
+<span class="co">#&gt; 12 AREA2 2019             6.054704                    1.582634</span>
+
+<span class="co"># Biomass per Trophic Level</span>
+biomass_TL &lt;-<span class="st"> </span><span class="kw">biomassPerTL</span>(<span class="dt">X =</span> X, <span class="dt">TL.table =</span> species.info, <span class="dt">metric =</span> <span class="st">&quot;BIOMASS&quot;</span>, 
+                           <span class="dt">TL.grouping =</span> <span class="dv">1</span>, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>))
+biomass_TL
+<span class="co">#&gt;       ID YEAR BIOMASS_TL2 BIOMASS_TL3 BIOMASS_TL4</span>
+<span class="co">#&gt; 1  AREA1 2014    35405630  2871871298   219507005</span>
+<span class="co">#&gt; 2  AREA1 2015    50462790  2084045535   321033089</span>
+<span class="co">#&gt; 3  AREA1 2016    59015649  2208636535   234481212</span>
+<span class="co">#&gt; 4  AREA1 2017    38536841  2363296738   207524841</span>
+<span class="co">#&gt; 5  AREA1 2018    25266700  1772958593   314547289</span>
+<span class="co">#&gt; 6  AREA1 2019    23113296  3121643636   198938915</span>
+<span class="co">#&gt; 7  AREA2 2014     4943480  2314505007   439759145</span>
+<span class="co">#&gt; 8  AREA2 2015     5610891   980086793   266814216</span>
+<span class="co">#&gt; 9  AREA2 2016     7916106  1302569804   213227183</span>
+<span class="co">#&gt; 10 AREA2 2017     2057205   825760389   490682646</span>
+<span class="co">#&gt; 11 AREA2 2018     2701400  1056387429   774679946</span>
+<span class="co">#&gt; 12 AREA2 2019     2382295  1166865751   152026191</span>
+
+<span class="co"># Intrinsic Vulnerability Index</span>
+IVI &lt;-<span class="st"> </span><span class="kw">IVILandings</span>(<span class="dt">land =</span> land, <span class="dt">IVI.table =</span> species.info, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>))
+IVI
+<span class="co">#&gt;       ID YEAR IVILandings</span>
+<span class="co">#&gt; 7  AREA1 2014    51.64111</span>
+<span class="co">#&gt; 8  AREA1 2015    48.40060</span>
+<span class="co">#&gt; 9  AREA1 2016    49.87676</span>
+<span class="co">#&gt; 10 AREA1 2017    51.88015</span>
+<span class="co">#&gt; 11 AREA1 2018    49.67221</span>
+<span class="co">#&gt; 12 AREA1 2019    46.28995</span>
+<span class="co">#&gt; 1  AREA2 2014    48.40830</span>
+<span class="co">#&gt; 2  AREA2 2015    50.53258</span>
+<span class="co">#&gt; 3  AREA2 2016    49.89094</span>
+<span class="co">#&gt; 4  AREA2 2017    49.34488</span>
+<span class="co">#&gt; 5  AREA2 2018    51.80322</span>
+<span class="co">#&gt; 6  AREA2 2019    48.64983</span>
+
+<span class="co"># Trophic Level of Landings</span>
+TL_land &lt;-<span class="st"> </span><span class="kw">meanTLLandings</span>(<span class="dt">land =</span> land, <span class="dt">TL.table =</span> species.info, <span class="dt">minTL =</span> <span class="dv">0</span>, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>))
+TL_land
+<span class="co">#&gt;       ID YEAR MeanTL.Landings</span>
+<span class="co">#&gt; 1  AREA1 2014        4.005387</span>
+<span class="co">#&gt; 2  AREA1 2015        3.691699</span>
+<span class="co">#&gt; 3  AREA1 2016        3.976440</span>
+<span class="co">#&gt; 4  AREA1 2017        3.929728</span>
+<span class="co">#&gt; 5  AREA1 2018        3.931436</span>
+<span class="co">#&gt; 6  AREA1 2019        3.864715</span>
+<span class="co">#&gt; 7  AREA2 2014        3.799556</span>
+<span class="co">#&gt; 8  AREA2 2015        3.938645</span>
+<span class="co">#&gt; 9  AREA2 2016        3.812923</span>
+<span class="co">#&gt; 10 AREA2 2017        4.053953</span>
+<span class="co">#&gt; 11 AREA2 2018        3.747004</span>
+<span class="co">#&gt; 12 AREA2 2019        3.853020</span>
+
+<span class="co"># Marine Trophic Index</span>
+MTI_land &lt;-<span class="st"> </span><span class="kw">meanTLLandings</span>(<span class="dt">land =</span> land, <span class="dt">TL.table =</span> species.info, <span class="dt">minTL =</span> <span class="fl">3.25</span>, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>))
+MTI_land
+<span class="co">#&gt;       ID YEAR MTI.Landings_3.25</span>
+<span class="co">#&gt; 1  AREA1 2014          4.150285</span>
+<span class="co">#&gt; 2  AREA1 2015          3.788783</span>
+<span class="co">#&gt; 3  AREA1 2016          4.139587</span>
+<span class="co">#&gt; 4  AREA1 2017          4.152784</span>
+<span class="co">#&gt; 5  AREA1 2018          4.159833</span>
+<span class="co">#&gt; 6  AREA1 2019          4.209118</span>
+<span class="co">#&gt; 7  AREA2 2014          3.904428</span>
+<span class="co">#&gt; 8  AREA2 2015          4.160202</span>
+<span class="co">#&gt; 9  AREA2 2016          3.986029</span>
+<span class="co">#&gt; 10 AREA2 2017          4.176730</span>
+<span class="co">#&gt; 11 AREA2 2018          3.908365</span>
+<span class="co">#&gt; 12 AREA2 2019          4.064047</span></code></pre></div>
+<div id="example-2" class="section level4">
+<h4>Example 2</h4>
+<p>If all of the indicators to be calculated are related to one attribute or pressure, it may be the most efficient and convenient to use the corresponding “allAttribute” function (Table 1). For example, if in Step 1 we decide that we are only interested in the Biodiversity indicators, then the <code>allBiodiversity()</code> function should be applied. The user can choose whether the function returns the indicator dataframe to the global environment, exports the dataframe to a csv file, or both. The user can also choose whether the function returns the raw indicator values, the standardized (z-score) values, or both. For example, the following function call returns 8 raw Biodiversity indicators to to the global environment.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compiled Data</span>
+<span class="kw">data</span>(X)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate raw indicators</span>
+<span class="kw">allBiodiversity</span>(<span class="dt">X =</span> X, <span class="dt">metric =</span> <span class="st">&quot;ABUNDANCE&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;ALL&quot;</span>, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>),
+                <span class="dt">percentiles =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">0.75</span>), <span class="dt">minTL =</span> <span class="dv">0</span>, <span class="dt">TL.table =</span> species.info, 
+                <span class="dt">raw =</span> <span class="ot">TRUE</span>, <span class="dt">std =</span> <span class="ot">FALSE</span>, 
+                <span class="dt">export.path =</span> <span class="ot">NULL</span>, <span class="dt">glob.env =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt;       ID YEAR SpeciesRichness_ALL ShannonDiversity_ALL</span>
+<span class="co">#&gt; 1  AREA1 2014                 153             1.832029</span>
+<span class="co">#&gt; 2  AREA1 2015                 190             2.043576</span>
+<span class="co">#&gt; 3  AREA1 2016                 191             1.723573</span>
+<span class="co">#&gt; 4  AREA1 2017                 200             2.123325</span>
+<span class="co">#&gt; 5  AREA1 2018                 187             2.206637</span>
+<span class="co">#&gt; 6  AREA1 2019                 196             1.426820</span>
+<span class="co">#&gt; 7  AREA2 2014                 161             2.018822</span>
+<span class="co">#&gt; 8  AREA2 2015                 150             2.130908</span>
+<span class="co">#&gt; 9  AREA2 2016                 151             1.920664</span>
+<span class="co">#&gt; 10 AREA2 2017                 143             2.002370</span>
+<span class="co">#&gt; 11 AREA2 2018                 140             1.579645</span>
+<span class="co">#&gt; 12 AREA2 2019                 141             1.797358</span>
+<span class="co">#&gt;    MargalefRichness_ALL PielouEvenness_ALL HillDiversity_ALL</span>
+<span class="co">#&gt; 1              6.197670          0.3641888          6.246549</span>
+<span class="co">#&gt; 2              7.702378          0.3894733          7.718159</span>
+<span class="co">#&gt; 3              7.717426          0.3281575          5.604518</span>
+<span class="co">#&gt; 4              8.265226          0.4007546          8.358885</span>
+<span class="co">#&gt; 5              7.754668          0.4218297          9.085114</span>
+<span class="co">#&gt; 6              7.842566          0.2703277          4.165434</span>
+<span class="co">#&gt; 7              6.726931          0.3972961          7.529450</span>
+<span class="co">#&gt; 8              6.420818          0.4252770          8.422510</span>
+<span class="co">#&gt; 9              6.376422          0.3828098          6.825488</span>
+<span class="co">#&gt; 10             6.143174          0.4034722          7.406587</span>
+<span class="co">#&gt; 11             5.850146          0.3196600          4.853233</span>
+<span class="co">#&gt; 12             6.054704          0.3631935          6.033683</span>
+<span class="co">#&gt;    HillDominance_ALL  Heips_ALL KemptonQ_0_ALL</span>
+<span class="co">#&gt; 1           3.951117 0.03451677       13.12902</span>
+<span class="co">#&gt; 2           3.903130 0.03554582       15.15009</span>
+<span class="co">#&gt; 3           3.174042 0.02423430       15.66883</span>
+<span class="co">#&gt; 4           4.679784 0.03697932       15.71705</span>
+<span class="co">#&gt; 5           5.597405 0.04346835       13.13195</span>
+<span class="co">#&gt; 6           2.447229 0.01623299       16.62034</span>
+<span class="co">#&gt; 7           4.886472 0.04080906       14.80901</span>
+<span class="co">#&gt; 8           3.987204 0.04981550       13.31722</span>
+<span class="co">#&gt; 9           4.597779 0.03883658       12.48471</span>
+<span class="co">#&gt; 10          4.387534 0.04511681       10.57121</span>
+<span class="co">#&gt; 11          3.031386 0.02772110       11.35864</span>
+<span class="co">#&gt; 12          3.118748 0.03595488       13.33981</span></code></pre></div>
+<p>By changing the arguments to <code>raw = FALSE</code> and <code>std = TRUE</code>, the function call returns the standardized versions of the same Biodiversity indicators (denoted with _s in the indicator name):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate standardized indicators</span>
+<span class="kw">allBiodiversity</span>(<span class="dt">X =</span> X, <span class="dt">metric =</span> <span class="st">&quot;ABUNDANCE&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;ALL&quot;</span>, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>),
+                <span class="dt">percentiles =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">0.75</span>), <span class="dt">minTL =</span> <span class="dv">0</span>, <span class="dt">TL.table =</span> species.info, 
+                <span class="dt">raw =</span> <span class="ot">FALSE</span>, <span class="dt">std =</span> <span class="ot">TRUE</span>,
+                <span class="dt">export.path =</span> <span class="ot">NULL</span>, <span class="dt">glob.env =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt;       ID YEAR SpeciesRichness_ALL_s ShannonDiversity_ALL_s</span>
+<span class="co">#&gt; 1  AREA1 2014           -1.96336120            -0.20824764</span>
+<span class="co">#&gt; 2  AREA1 2015            0.22692114             0.51834679</span>
+<span class="co">#&gt; 3  AREA1 2016            0.28611796            -0.58075955</span>
+<span class="co">#&gt; 4  AREA1 2017            0.81888935             0.79225918</span>
+<span class="co">#&gt; 5  AREA1 2018            0.04933068             1.07840945</span>
+<span class="co">#&gt; 6  AREA1 2019            0.58210207            -1.60000823</span>
+<span class="co">#&gt; 7  AREA2 2014            1.66840550             0.56536998</span>
+<span class="co">#&gt; 8  AREA2 2015            0.29197096             1.13871095</span>
+<span class="co">#&gt; 9  AREA2 2016            0.41710137             0.06327215</span>
+<span class="co">#&gt; 10 AREA2 2017           -0.58394192             0.48121355</span>
+<span class="co">#&gt; 11 AREA2 2018           -0.95933316            -1.68110391</span>
+<span class="co">#&gt; 12 AREA2 2019           -0.83420275            -0.56746272</span>
+<span class="co">#&gt;    MargalefRichness_ALL_s PielouEvenness_ALL_s HillDiversity_ALL_s</span>
+<span class="co">#&gt; 1              -1.9495666           0.03124724         -0.33293655</span>
+<span class="co">#&gt; 2               0.1726122           0.48700578          0.46171826</span>
+<span class="co">#&gt; 3               0.1938362          -0.61822413         -0.67962724</span>
+<span class="co">#&gt; 4               0.9664297           0.69035296          0.80770367</span>
+<span class="co">#&gt; 5               0.2463608           1.07023672          1.19985988</span>
+<span class="co">#&gt; 6               0.3703278          -1.66061858         -1.45671801</span>
+<span class="co">#&gt; 7               1.4985953           0.41582955          0.54445706</span>
+<span class="co">#&gt; 8               0.5118423           1.17409343          1.25502126</span>
+<span class="co">#&gt; 9               0.3687338           0.02326120         -0.01565095</span>
+<span class="co">#&gt; 10             -0.3831397           0.58319791          0.44670105</span>
+<span class="co">#&gt; 11             -1.3277109          -1.68805644         -1.58487726</span>
+<span class="co">#&gt; 12             -0.6683208          -0.50832565         -0.64565116</span>
+<span class="co">#&gt;    HillDominance_ALL_s Heips_ALL_s KemptonQ_0_ALL_s</span>
+<span class="co">#&gt; 1          -0.00693690   0.2731363       -1.2215760</span>
+<span class="co">#&gt; 2          -0.05035106   0.3777329        0.1702418</span>
+<span class="co">#&gt; 3          -0.70996705  -0.7720179        0.5274729</span>
+<span class="co">#&gt; 4           0.65229741   0.5234404        0.5606803</span>
+<span class="co">#&gt; 5           1.48248123   1.1830134       -1.2195552</span>
+<span class="co">#&gt; 6          -1.36752364  -1.5853051        1.1827361</span>
+<span class="co">#&gt; 7           1.14088571   0.1441583        1.4196688</span>
+<span class="co">#&gt; 8          -0.01845729   1.3244037        0.4402009</span>
+<span class="co">#&gt; 9           0.76870128  -0.1143239       -0.1064005</span>
+<span class="co">#&gt; 10          0.49765150   0.7086653       -1.3627534</span>
+<span class="co">#&gt; 11         -1.25070507  -1.5709476       -0.8457487</span>
+<span class="co">#&gt; 12         -1.13807613  -0.4919558        0.4550329</span></code></pre></div>
+</div>
+<div id="example-3" class="section level4">
+<h4>Example 3</h4>
+<p>If we decide in Step 1 that all indicators should be calculated, and data are available to do so, the <code>extractAll()</code> function may be the most efficient and convenient. The user can choose whether the function returns the indicator dataframe to the global environment, exports the dataframe to a csv file, or both. The user can also choose whether the function returns the raw indicator values, the standardized (z-score) values, or both. For example, the following function call calculates 47 standardized indicators and returns them to the global environment in variable <code>all_inds</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compiled data</span>
+<span class="kw">data</span>(X)
+<span class="kw">data</span>(X_length)
+<span class="kw">data</span>(land)
+<span class="kw">data</span>(Length_Weight)
+<span class="kw">data</span>(species.info)
+<span class="kw">data</span>(species.table)
+
+<span class="co"># Species groups of interest</span>
+resource.groups &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;GROUNDFISH&quot;</span>)
+ratio.groups &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="st">&quot;PELAGIC&quot;</span>, <span class="st">&quot;GROUNDFISH&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;PREDATORS&quot;</span>, <span class="st">&quot;ALL&quot;</span>)))
+trophicguild.groups &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;LBENTHIVORE&quot;</span>, <span class="st">&quot;MBENTHIVORE&quot;</span>, <span class="st">&quot;PISCIVORE&quot;</span>, <span class="st">&quot;PLANKTIVORE&quot;</span>)
+condition.groups &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;FINFISH&quot;</span>, <span class="st">&quot;LBENTHIVORE&quot;</span>, <span class="st">&quot;MBENTHIVORE&quot;</span>, <span class="st">&quot;PISCIVORE&quot;</span>, <span class="st">&quot;PLANKTIVORE&quot;</span>, <span class="st">&quot;ZOOPISCIVORE&quot;</span>)
+landings.groups &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;CLUPEIDS.L&quot;</span>, <span class="st">&quot;FLATFISH.L&quot;</span>, <span class="st">&quot;GROUNDFISH.L&quot;</span>)
+FP.groups &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;ALL&quot;</span>), 
+   <span class="kw">c</span>(<span class="st">&quot;CLUPEIDS&quot;</span>, <span class="st">&quot;CLUPEIDS.L&quot;</span>),
+   <span class="kw">c</span>(<span class="st">&quot;FLATFISH&quot;</span>, <span class="st">&quot;FLATFISH.L&quot;</span>),
+   <span class="kw">c</span>(<span class="st">&quot;GROUNDFISH&quot;</span>, <span class="st">&quot;GROUNDFISH.L&quot;</span>)))
+<span class="kw">names</span>(FP.groups) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;group.X&quot;</span>, <span class="st">&quot;group.land&quot;</span>)
+
+<span class="co"># Calculate indicators</span>
+all_inds &lt;-<span class="st"> </span><span class="kw">extractAll</span>(<span class="dt">X =</span> X, <span class="dt">X_length =</span> X_length, <span class="dt">land =</span> land, <span class="dt">years =</span> <span class="kw">c</span>(<span class="dv">2014</span><span class="op">:</span><span class="dv">2019</span>), 
+                       <span class="dt">speciesinfo.table =</span> species.info, <span class="dt">species.table =</span> species.table, 
+                       <span class="dt">metric.bio =</span> <span class="st">&quot;ABUNDANCE&quot;</span>, <span class="dt">group.bio =</span> <span class="st">&quot;ALL&quot;</span>, <span class="dt">minTL.bio =</span> <span class="dv">3</span>,
+                       <span class="dt">LSI.group =</span> <span class="st">&quot;ALL&quot;</span>, <span class="dt">max.length =</span> <span class="dv">85</span>, 
+                       <span class="dt">LFI.group =</span> <span class="st">&quot;ALL&quot;</span>, <span class="dt">large.fish =</span> <span class="dv">35</span>,
+                       <span class="dt">LenWt.table =</span> Length_Weight,
+                       <span class="dt">guild.groups =</span> trophicguild.groups, 
+                       <span class="dt">condition.groups =</span> condition.groups, 
+                       <span class="dt">ratio.groups =</span> ratio.groups,
+                       <span class="dt">maxlength.group =</span> <span class="st">&quot;FINFISH&quot;</span>,  <span class="dt">TL.grouping =</span> <span class="dv">1</span>, <span class="dt">wind =</span> <span class="dv">5</span>, <span class="dt">negative =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">resource.groups =</span> resource.groups,
+                       <span class="dt">minTL.FiB =</span> <span class="dv">0</span>, <span class="dt">base.start =</span> <span class="dv">2014</span>, <span class="dt">base.end =</span> <span class="dv">2015</span>,
+                       <span class="dt">landings.groups =</span> landings.groups, <span class="dt">FP.groups =</span> FP.groups, 
+                       <span class="dt">minTL.FP =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">3.25</span>), 
+                       <span class="dt">export.path =</span> <span class="ot">NULL</span>, <span class="dt">glob.env =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">raw =</span> <span class="ot">FALSE</span>, <span class="dt">std =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">names</span>(all_inds)
+<span class="co">#&gt;  [1] &quot;ID&quot;                        &quot;YEAR&quot;                     </span>
+<span class="co">#&gt;  [3] &quot;SpeciesRichness_ALL_s&quot;     &quot;ShannonDiversity_ALL_s&quot;   </span>
+<span class="co">#&gt;  [5] &quot;MargalefRichness_ALL_s&quot;    &quot;PielouEvenness_ALL_s&quot;     </span>
+<span class="co">#&gt;  [7] &quot;HillDiversity_ALL_s&quot;       &quot;HillDominance_ALL_s&quot;      </span>
+<span class="co">#&gt;  [9] &quot;Heips_ALL_s&quot;               &quot;KemptonQ_3_ALL_s&quot;         </span>
+<span class="co">#&gt; [11] &quot;BIOMASS_LBENTHIVORE_s&quot;     &quot;BIOMASS_MBENTHIVORE_s&quot;    </span>
+<span class="co">#&gt; [13] &quot;BIOMASS_PISCIVORE_s&quot;       &quot;BIOMASS_PLANKTIVORE_s&quot;    </span>
+<span class="co">#&gt; [15] &quot;LargeSpeciesIndicator_s&quot;   &quot;MeanTLCommunity_s&quot;        </span>
+<span class="co">#&gt; [17] &quot;LargeFishIndicator_s&quot;      &quot;MeanLengthBIOMASS_s&quot;      </span>
+<span class="co">#&gt; [19] &quot;MeanLengthABUNDANCE_s&quot;     &quot;CCondition_FINFISH_s&quot;     </span>
+<span class="co">#&gt; [21] &quot;CCondition_LBENTHIVORE_s&quot;  &quot;CCondition_MBENTHIVORE_s&quot; </span>
+<span class="co">#&gt; [23] &quot;CCondition_PISCIVORE_s&quot;    &quot;CCondition_PLANKTIVORE_s&quot; </span>
+<span class="co">#&gt; [25] &quot;CCondition_ZOOPISCIVORE_s&quot; &quot;CVBiomass_s&quot;              </span>
+<span class="co">#&gt; [27] &quot;MeanLifespan_s&quot;            &quot;BIOMASS_TL2_s&quot;            </span>
+<span class="co">#&gt; [29] &quot;BIOMASS_TL3_s&quot;             &quot;BIOMASS_TL4_s&quot;            </span>
+<span class="co">#&gt; [31] &quot;MMLength_BIOMASS_s&quot;        &quot;MMLength_ABUNDANCE_s&quot;     </span>
+<span class="co">#&gt; [33] &quot;IVILandings_s&quot;             &quot;ABUNDANCE_ALL_s&quot;          </span>
+<span class="co">#&gt; [35] &quot;BIOMASS_ALL_s&quot;             &quot;BIOMASS_GROUNDFISH_s&quot;     </span>
+<span class="co">#&gt; [37] &quot;FishinginBalance_s&quot;        &quot;DiversityTargetSpp_ALL_s&quot; </span>
+<span class="co">#&gt; [39] &quot;MeanTL.Landings_s&quot;         &quot;MTI.Landings_3.25_s&quot;      </span>
+<span class="co">#&gt; [41] &quot;landings_ALL_s&quot;            &quot;landings_CLUPEIDS.L_s&quot;    </span>
+<span class="co">#&gt; [43] &quot;landings_FLATFISH.L_s&quot;     &quot;landings_GROUNDFISH.L_s&quot;  </span>
+<span class="co">#&gt; [45] &quot;FP_ALL_s&quot;                  &quot;FP_CLUPEIDS_s&quot;            </span>
+<span class="co">#&gt; [47] &quot;FP_FLATFISH_s&quot;             &quot;FP_GROUNDFISH_s&quot;</span></code></pre></div>
+<p>Recall that if there are different species codes in <code>X</code> and <code>land</code>, then the Fishing-in-Balance, Intrinsic Vulnerability Index of Landings, Mean Trophic Level of the Landings, and Marine Trophic Index should be calculated using their respective single functions (see Table 1).</p>
+</div>
+</div>
+<div id="missing-data" class="section level3">
+<h3>Missing Data</h3>
+<p>If there are no observations for a given year in <code>X</code>, <code>X_length</code> or <code>land</code>, the indicator value is either assigned <code>NA</code> or <code>0</code>. In the case of fishery independent data, a species may still be present in the community even if it is not detected during the survey, and so all indicators calculated from <code>X</code> and <code>X_land</code> are assigned <code>NA</code> for years that are missing data.</p>
+<p>In contrast, for commercial landings data, we assume that no recorded landings of a species means that the species was not landed. All landings indicators are therefore assigned <code>0</code> for years without data. For fishing pressure, if the biomass of the fished group is <code>NA</code> and landings of the group are <code>0</code>, the fishing pressure is set to <code>0</code>. Otherwise, if biomass of the fished group is <code>NA</code>, fishing pressure is set to <code>NA</code>.</p>
+<p>Other indicators that are calculated from <code>land</code> are assigned <code>NA</code> for years without observations (e.g., Intrinsic Vulnerability Index, Fishing-in-Balance, Diversity of Target Species, Marine Trophic Index, Mean Trophic Level of Landings).</p>
+</div>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Bundy A, Gomez C, Cook AM. 2017. Guidance framework for the selection and evaluation of ecological indicators. Can. Tech. Rep. Fish. Aquat. Sci. 3232: xii + 212 p.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>1/(Coefficient of Variation of Biomass) was calculated in the Guidance Framework (Bundy, Gomez, and Cook, 2017)<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Trophic level is only required to calculate Kempton’s Q if a threshold trophic level is specified (e.g., <code>minTL</code> &gt; 0).<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
